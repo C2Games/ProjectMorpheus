@@ -9,8 +9,7 @@ namespace ProjectMorpheusGame
     internal static class Program
     {
         public static void Main(string[] args) {
-            Console.Write("Hello world");
-            Console.ReadLine();
+            ProjectMorpheus.Game.Test();
         }
     }
 }

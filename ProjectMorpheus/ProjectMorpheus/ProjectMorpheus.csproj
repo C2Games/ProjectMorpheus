@@ -58,12 +58,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="OpenTK">
-      <HintPath>..\..\..\..\..\..\Downloads\SFML.Net-2.2-64-bit\SFML.Net-2.2\extlibs\OpenTK.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenTK.Compatibility">
-      <HintPath>..\..\..\..\..\..\Downloads\SFML.Net-2.2-64-bit\SFML.Net-2.2\extlibs\OpenTK.Compatibility.dll</HintPath>
-    </Reference>
     <Reference Include="sfmlnet-audio-2">
       <HintPath>..\..\..\..\..\..\Downloads\SFML.Net-2.2-64-bit\SFML.Net-2.2\lib\sfmlnet-audio-2.dll</HintPath>
     </Reference>
@@ -77,6 +71,9 @@
       <HintPath>..\..\..\..\..\..\Downloads\SFML.Net-2.2-64-bit\SFML.Net-2.2\lib\sfmlnet-window-2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Game.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="csfml-audio-2.dll">
