@@ -1,38 +1,39 @@
-﻿using SFML;
-using SFML.Graphics;
+﻿using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjectMorpheus
 {
     public abstract class Game
     {
-        public static void Main(String[] args)
-        {
-            Game.Test();
-            
+        private static RenderWindow window;
+
+        public static void Main(String[] args) {
+            Game.Load();
+            Game.GameLoop();
         }
+
+        private static void Load() {
+            window = new RenderWindow(new VideoMode(400, 400), "Test");
+
+            window.KeyPressed += InputManager.OnKeyPressed;
+            window.KeyReleased += InputManager.OnKeyReleased;
+            window.MouseButtonPressed += InputManager.OnMousePressed;
+            window.MouseButtonReleased += InputManager.OnMouseReleased;
+            window.MouseMoved += InputManager.OnMouseMoved;
+
+            window.Closed += OnClosed;
+        }
+
         public abstract void Update(Time elapsed);
 
-        public static void Test() {
-            RenderWindow window = new RenderWindow(new VideoMode(400, 400), "Test");
-            window.KeyPressed += keypresstest;
-            window.Closed += OnClosed;
-
+        private static void GameLoop() {
             while (window.IsOpen) {
                 window.Clear();
                 window.DispatchEvents();
                 window.Display();
             }
-        }
-
-        private static void keypresstest(object sender, KeyEventArgs e) {
-            Console.Write(e.Code.ToString());
         }
 
         private static void OnClosed(object sender, EventArgs e) {

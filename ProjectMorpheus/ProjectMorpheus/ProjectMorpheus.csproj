@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{F1F17A04-D897-4484-BF8C-E18FAF3EAE6F}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ProjectMorpheus</RootNamespace>
     <AssemblyName>ProjectMorpheus</AssemblyName>
@@ -75,6 +75,9 @@
   <ItemGroup>
     <Compile Include="ContentManager.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="InputManager.cs" />
+    <Compile Include="KeyboardCommand.cs" />
+    <Compile Include="MouseCommand.cs" />
     <Compile Include="Tiles\AnimatedTile.cs" />
     <Compile Include="Tiles\FlatTile.cs" />
     <Compile Include="Tiles\MountainTile.cs" />
