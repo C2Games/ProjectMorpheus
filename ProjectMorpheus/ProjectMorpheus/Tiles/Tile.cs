@@ -24,10 +24,9 @@ namespace ProjectMorpheus.Tiles
 
         public abstract bool IsAirPassable();
 
-        public int Draw(Vector2f tilePos, RenderWindow window) {
+        public virtual void Draw(Vector2f tilePos, RenderWindow window) {
             tileSprite().Position = tilePos;
             window.Draw(tileSprite());
-            return 0;
         }
     }
 }
