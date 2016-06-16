@@ -11,15 +11,18 @@ namespace ProjectMorpheus.Tiles
     internal abstract class AnimatedTile : Tile
     {
         private int frame = 0;
+        private IntRect rect = new IntRect(0, 0, tileSize, tileSize);
 
-        private abstract int animationLength();
+        public abstract int animationLength();
 
-        public void Draw(Vector2f tilePos, RenderWindow window) {
+        new public int Draw(Vector2f tilePos, RenderWindow window) {
             base.Draw(tilePos, window);
             frame++;
-            IntRect rect = tileSprite().TextureRect;
-            rect.Left = frame * tileSize;
+            //IntRect rect = tileSprite().TextureRect;
+            rect.Left = frame * tileSize; 
+            
             tileSprite().TextureRect = rect;
+            return 0;
         }
     }
 }

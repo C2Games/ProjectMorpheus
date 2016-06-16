@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProjectMorpheus.Tiles
 {
-    internal class Tile
+    internal abstract class Tile
     {
         protected const int tileSize = 32;
 
@@ -24,9 +24,10 @@ namespace ProjectMorpheus.Tiles
 
         public abstract bool IsAirPassable();
 
-        public void Draw(Vector2f tilePos, RenderWindow window) {
+        public int Draw(Vector2f tilePos, RenderWindow window) {
             tileSprite().Position = tilePos;
             window.Draw(tileSprite());
+            return 0;
         }
     }
 }

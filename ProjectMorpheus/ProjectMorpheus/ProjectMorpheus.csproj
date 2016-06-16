@@ -75,6 +75,7 @@
   <ItemGroup>
     <Compile Include="Game.cs" />
     <Compile Include="Tiles\AnimatedTile.cs" />
+    <Compile Include="Tiles\PlainGround1.cs" />
     <Compile Include="Tiles\Tile.cs" />
   </ItemGroup>
   <ItemGroup>

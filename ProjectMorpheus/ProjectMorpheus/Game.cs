@@ -12,6 +12,11 @@ namespace ProjectMorpheus
 {
     public abstract class Game
     {
+        public static void Main(String[] args)
+        {
+            Game.Test();
+            
+        }
         public abstract void Update(Time elapsed);
 
         public static void Test() {
