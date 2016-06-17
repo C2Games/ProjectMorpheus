@@ -1,4 +1,5 @@
-﻿using SFML.Graphics;
+﻿using ProjectMorpheus.Tiles;
+using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 using System;
@@ -22,6 +23,14 @@ namespace ProjectMorpheus
             InputManager.Load();
 
             ContentManager.LoadFont(@"C:\Windows\Fonts\BAUHS93.ttf", "testfont");
+            ContentManager.LoadTexture(@"C:\Users\Corey\Desktop\mapTile_009.png", "texture_flattile");
+
+            TileManager.ClearMap(100, 100);
+            for (int x = 0; x < 100; ++x) {
+                for (int y = 0; y < 100; ++y) {
+                    TileManager.SetTile(x, y, new FlatTile());
+                }
+            }
 
             window = new RenderWindow(new VideoMode(400, 400), "Test");
 
@@ -36,32 +45,52 @@ namespace ProjectMorpheus
 
         private static HashSet<Keyboard.Key> debug = new HashSet<Keyboard.Key>();
 
+        private static bool debugLeft = false;
+        private static bool debugRight = false;
+        private static bool debugUp = false;
+        private static bool debugDown = false;
+
         private static void Update() {
             while (InputManager.KeyAvailable()) {
                 KeyboardCommand kc = InputManager.GetKeyCommand();
-                if (kc.Pressed) {
-                    debug.Add(kc.Key);
-                }
-                else {
-                    debug.Remove(kc.Key);
+                switch (kc.Key) {
+                    case Keyboard.Key.A:
+                        debugLeft = kc.Pressed;
+                        break;
+                    case Keyboard.Key.D:
+                        debugRight = kc.Pressed;
+                        break;
+                    case Keyboard.Key.W:
+                        debugUp = kc.Pressed;
+                        break;
+                    case Keyboard.Key.S:
+                        debugDown = kc.Pressed;
+                        break;
                 }
             }
+
+            if (debugLeft) TileManager.MoveCameraRelative(-32 / 30f, 0);
+            if (debugRight) TileManager.MoveCameraRelative(32 / 30f, 0);
+            if (debugUp) TileManager.MoveCameraRelative(0, -32 / 30f);
+            if (debugDown) TileManager.MoveCameraRelative(0, 32 / 30f);
         }
 
         private static void Draw() {
             window.Clear();
 
-            Text info = new Text();
-            info.Font = ContentManager.GetFont("testfont");
-            info.Position = new Vector2f(0, 0);
-            info.Color = Color.White;
-            StringBuilder sb = new StringBuilder();
-            sb.Append(string.Format("{0} : {1}\n", InputManager.GetMouseLocation().X, InputManager.GetMouseLocation().Y));
-            foreach (Keyboard.Key k in debug) {
-                sb.Append(k.ToString());
-            }
-            info.DisplayedString = sb.ToString();
-            window.Draw(info);
+            //Text info = new Text();
+            //info.Font = ContentManager.GetFont("testfont");
+            //info.Position = new Vector2f(0, 0);
+            //info.Color = Color.White;
+            //StringBuilder sb = new StringBuilder();
+            //sb.Append(string.Format("{0} : {1}\n", InputManager.GetMouseLocation().X, InputManager.GetMouseLocation().Y));
+            //foreach (Keyboard.Key k in debug) {
+            //    sb.Append(k.ToString());
+            //}
+            //info.DisplayedString = sb.ToString();
+            //window.Draw(info);
+
+            TileManager.Draw(window);
             window.Display();
         }
 
