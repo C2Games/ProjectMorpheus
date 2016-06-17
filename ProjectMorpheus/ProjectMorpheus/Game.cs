@@ -22,8 +22,8 @@ namespace ProjectMorpheus
             ContentManager.Load();
             InputManager.Load();
 
-            ContentManager.LoadFont(@"C:\Windows\Fonts\BAUHS93.ttf", "testfont");
-            ContentManager.LoadTexture(@"C:\Users\Corey\Desktop\mapTile_009.png", "texture_flattile");
+            ContentManager.LoadFont(@"C:\Windows\Fonts\Arial.ttf", "testfont");
+            ContentManager.LoadTexture(@"C:\Users\Chris\Desktop\textest.png", "texture_flattile");
 
             TileManager.ClearMap(100, 100);
             for (int x = 0; x < 100; ++x) {
