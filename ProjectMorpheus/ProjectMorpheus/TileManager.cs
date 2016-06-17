@@ -13,7 +13,7 @@ namespace ProjectMorpheus
     internal static class TileManager
     {
         private static Tile[][] map;
-        private static Vector2i size;
+        private static Vector2i mapSize;
         private static Vector2f camera;
 
         public static void ClearMap(int width, int height) {
@@ -22,11 +22,12 @@ namespace ProjectMorpheus
                 map[i] = Enumerable.Repeat(new FlatTile(), height).ToArray();
             }
 
-            size.X = width;
-            size.Y = height;
+            mapSize.X = width;
+            mapSize.Y = height;
 
-            camera.X = width / 2.0f;
-            camera.Y = height / 2.0f;
+            //TODO: not hardcode tilesize
+            camera.X = 32 * width / 2.0f;
+            camera.Y = 32 * height / 2.0f;
         }
 
         public static void SetTile(int x, int y, Tile tile) {
@@ -54,17 +55,14 @@ namespace ProjectMorpheus
             int tilingWidth = (int)windowSize.X / tileSize;
             int tilingHeight = (int)windowSize.Y / tileSize;
 
-            int leftIndex = (int)Math.Floor(camera.X / tileSize), rightIndex = leftIndex + tilingWidth+1; //+1 to not show black on the right edge
-            int topIndex = (int)Math.Floor(camera.Y / tileSize), bottomIndex = topIndex + tilingHeight+1;
-
-            /*int leftIndex = (int)Math.Floor((camera.X - (windowSize.X / 2.0f)) / tileSize);
+            int leftIndex = (int)Math.Floor(camera.X / tileSize);
             if (leftIndex < 0) leftIndex = 0;
-            int rightIndex = (int)Math.Floor((camera.X + (windowSize.X / 2.0f)) / tileSize);
-            if (rightIndex >= size.X) rightIndex = size.X - 1;
-            int topIndex = (int)Math.Floor((camera.Y - (windowSize.Y / 2.0f)) / tileSize);
+            int rightIndex = leftIndex + tilingWidth + 1;
+            if (rightIndex >= mapSize.X) rightIndex = mapSize.X - 1;
+            int topIndex = (int)Math.Floor(camera.Y / tileSize);
             if (topIndex < 0) topIndex = 0;
-            int bottomIndex = (int)Math.Floor((camera.Y + (windowSize.Y / 2.0f)) / tileSize);
-            if (bottomIndex >= size.Y) bottomIndex = size.Y - 1;*/
+            int bottomIndex = topIndex + tilingHeight + 1;
+            if (bottomIndex >= mapSize.Y) bottomIndex = mapSize.Y - 1;
 
             for (int x = leftIndex; x <= rightIndex; ++x) {
                 for (int y = topIndex; y <= bottomIndex; ++y) {
