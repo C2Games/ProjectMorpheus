@@ -52,5 +52,9 @@ namespace ProjectMorpheus
         public static MouseCommand GetMouseCommand() {
             return mouseQueue.Dequeue();
         }
+
+        public static Vector2i GetMouseLocation() {
+            return mouseLocation;
+        }
     }
 }
