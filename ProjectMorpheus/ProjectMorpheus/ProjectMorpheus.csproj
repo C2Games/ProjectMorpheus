@@ -84,6 +84,9 @@
     <Compile Include="Tiles\MountainTile.cs" />
     <Compile Include="Tiles\PlainGround1.cs" />
     <Compile Include="Tiles\Tile.cs" />
+    <Compile Include="Units\Unit.cs" />
+    <Compile Include="Units\UnitAction.cs" />
+    <Compile Include="Units\UnitType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="csfml-audio-2.dll">
