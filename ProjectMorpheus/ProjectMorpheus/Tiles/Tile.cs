@@ -11,8 +11,6 @@ namespace ProjectMorpheus.Tiles
 
         public abstract int GetDefenseValue();
 
-        public abstract int GetMoveCost();
-
         public abstract bool IsInfantryPassable();
 
         public abstract bool IsVehiclePassable();

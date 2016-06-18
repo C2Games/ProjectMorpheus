@@ -20,10 +20,6 @@ namespace ProjectMorpheus.Tiles
             return 0; //TODO
         }
 
-        public override int GetMoveCost() {
-            return 0; //TODO
-        }
-
         public override bool IsInfantryPassable() {
             return true;
         }
