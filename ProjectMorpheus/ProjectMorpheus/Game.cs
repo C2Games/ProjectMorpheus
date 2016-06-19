@@ -57,12 +57,15 @@ namespace ProjectMorpheus
                     case Keyboard.Key.A:
                         debugLeft = kc.Pressed;
                         break;
+
                     case Keyboard.Key.D:
                         debugRight = kc.Pressed;
                         break;
+
                     case Keyboard.Key.W:
                         debugUp = kc.Pressed;
                         break;
+
                     case Keyboard.Key.S:
                         debugDown = kc.Pressed;
                         break;
@@ -91,7 +94,7 @@ namespace ProjectMorpheus
             //window.Draw(info);
 
             TileManager.Draw(window);
-            ActionMenu debugAM = new ActionMenu(new Units.UnitAction[] { Units.UnitAction.Fire, Units.UnitAction.Wait }, 0, new Vector2f(10,10));
+            ActionMenu debugAM = new ActionMenu(new Units.UnitAction[] { Units.UnitAction.Fire, Units.UnitAction.Wait }, 0, new Vector2f(10, 10));
             debugAM.Draw(window);
             window.Display();
         }
