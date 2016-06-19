@@ -84,8 +84,10 @@
     <Compile Include="Tiles\AnimatedTile.cs" />
     <Compile Include="Tiles\FlatTile.cs" />
     <Compile Include="Tiles\MountainTile.cs" />
-    <Compile Include="Tiles\PlainGround1.cs" />
     <Compile Include="Tiles\Tile.cs" />
+    <Compile Include="UnitManager.cs" />
+    <Compile Include="Units\Teams.cs" />
+    <Compile Include="Units\Testunit.cs" />
     <Compile Include="Units\Unit.cs" />
     <Compile Include="Units\UnitAction.cs" />
     <Compile Include="Units\UnitType.cs" />
