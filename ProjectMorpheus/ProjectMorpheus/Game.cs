@@ -91,6 +91,8 @@ namespace ProjectMorpheus
             //window.Draw(info);
 
             TileManager.Draw(window);
+            ActionMenu debugAM = new ActionMenu(new Units.UnitAction[] { Units.UnitAction.Fire, Units.UnitAction.Wait }, 0, new Vector2f((float)InputManager.GetMouseLocation().X,(float)InputManager.GetMouseLocation().Y));
+            debugAM.Draw(window);
             window.Display();
         }
 
