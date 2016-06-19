@@ -1,6 +1,7 @@
 ﻿using ProjectMorpheus.Units;
 using SFML.System;
 using SFML.Graphics;
+using SFML.Window;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,15 @@ namespace ProjectMorpheus
         private UnitAction[] actions;
         private Vector2f location;
         private int selected;
+        private float rectWidth = 150; //TODO: experiment for right values
+        private float textHeight = 35;
+        private float rectHeight;
         public ActionMenu(UnitAction[] actions, int selected, Vector2f location)
         {
             this.actions = actions;
             this.location = location;  //where to draw the menu in window coords
             this.selected = selected; //currently zero-indexed
+            rectHeight = 10 + textHeight * actions.Length;
         }
         public void SetSelected(int selected)
         {
@@ -27,14 +32,35 @@ namespace ProjectMorpheus
         }
         public void Update()
         {
-            //TODO: peek at keys first. If it's a dire Esc or something, break update
-            
+            if (InputManager.KeyAvailable())
+            {
+                KeyboardCommand kc = InputManager.GetKeyCommand();
+               /* switch (kc.Key)
+                {
+                    case Keyboard.Key.A:
+                       // debugLeft = kc.Pressed;
+                        break;
+                    case Keyboard.Key.D:
+                        //debugRight = kc.Pressed;
+                        break;
+                    case Keyboard.Key.W:
+                        //debugUp = kc.Pressed;
+                        break;
+                    case Keyboard.Key.S:
+                        //debugDown = kc.Pressed;
+                        break;
+                }*/
+                //^ for keyboard support later
+            }
+            Vector2f mouseLocation = new Vector2f((float)InputManager.GetMouseLocation().X, (float)InputManager.GetMouseLocation().Y);
+            float mX = mouseLocation.X, menuX = location.X, mY = mouseLocation.Y, menuY = location.Y;
+            if ((mX < (menuX + rectWidth)) && (mX > menuX) && (mY < (menuY + rectHeight)) && (mY > menuY))
+            {
+                selected = (int)((mY - 5) / textHeight) - 1;
+            }
         }
         public void Draw(RenderWindow window)
         {
-            float rectWidth = 150; //TODO: experiment for right values
-            float textHeight = 35;
-            float rectHeight = 10 + textHeight * actions.Length;
             RectangleShape menuShape = new RectangleShape(new Vector2f(rectWidth,rectHeight)); //TODO: make fancier
             CircleShape pointer = new CircleShape(10, 3);
 
@@ -45,6 +71,8 @@ namespace ProjectMorpheus
 
             //pointer.Origin = new Vector2f(5, 5); //half of radius above
             pointer.Rotation = -30.0f;
+            pointer.OutlineThickness = 1.0f;
+            pointer.OutlineColor = new Color(0, 0, 0);
             pointer.Position = menuShape.Position + new Vector2f(0, 5 + (textHeight/2.0f) + textHeight * selected);
             pointer.FillColor = new Color(255, 0, 0);
             window.Draw(menuShape);
