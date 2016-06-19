@@ -41,12 +41,20 @@ namespace ProjectMorpheus
             return keyboardQueue.Count > 0;
         }
 
+        public static KeyboardCommand PeekKeyCommand() {
+            return keyboardQueue.Peek();
+        }
+
         public static KeyboardCommand GetKeyCommand() {
             return keyboardQueue.Dequeue();
         }
 
         public static bool MouseAvailable() {
             return keyboardQueue.Count > 0;
+        }
+
+        public static MouseCommand PeekMouseCommand() {
+            return mouseQueue.Peek();
         }
 
         public static MouseCommand GetMouseCommand() {
