@@ -73,6 +73,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionMenu.cs" />
     <Compile Include="ContentManager.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="InputManager.cs" />
