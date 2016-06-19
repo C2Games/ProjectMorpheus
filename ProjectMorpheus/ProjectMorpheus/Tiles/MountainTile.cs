@@ -1,4 +1,5 @@
-﻿using SFML.Graphics;
+﻿using ProjectMorpheus.Units;
+using SFML.Graphics;
 
 namespace ProjectMorpheus.Tiles
 {
@@ -20,16 +21,13 @@ namespace ProjectMorpheus.Tiles
             return 0; //TODO
         }
 
-        public override bool IsInfantryPassable() {
-            return true;
-        }
-
-        public override bool IsVehiclePassable() {
-            return false;
-        }
-
-        public override bool IsAirPassable() {
-            return true;
+        public override bool IsPassable(UnitType type) {
+            if (type == UnitType.Vehicle) {
+                return false;
+            }
+            else {
+                return true;
+            }
         }
     }
 }
