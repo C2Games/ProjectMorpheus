@@ -79,6 +79,8 @@
     <Compile Include="InputManager.cs" />
     <Compile Include="KeyboardCommand.cs" />
     <Compile Include="MouseCommand.cs" />
+    <Compile Include="StateManager.cs" />
+    <Compile Include="States\State.cs" />
     <Compile Include="TileManager.cs" />
     <Compile Include="Tiles\AnimatedTile.cs" />
     <Compile Include="Tiles\FlatTile.cs" />
