@@ -6,6 +6,8 @@ namespace ProjectMorpheus.Units
     {
         protected float health;
         protected bool hasMoved;
+        protected Teams team;
+        protected Teams[] allies;
 
         public abstract UnitType GetUnitType();
 
