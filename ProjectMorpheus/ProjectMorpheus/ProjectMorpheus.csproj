@@ -79,6 +79,7 @@
     <Compile Include="InputManager.cs" />
     <Compile Include="KeyboardCommand.cs" />
     <Compile Include="MouseCommand.cs" />
+    <Compile Include="SoundManager.cs" />
     <Compile Include="StateManager.cs" />
     <Compile Include="States\State.cs" />
     <Compile Include="TileManager.cs" />
