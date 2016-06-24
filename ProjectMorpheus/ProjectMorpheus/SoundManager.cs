@@ -13,7 +13,9 @@ namespace ProjectMorpheus
         private static int soundVolume;
 
         public static void Load() {
-            musicVolume = 50;
+            musicVolume = 100;
+            soundVolume = 100;
+            sounds = new Sound[maxSounds];
         }
 
         public static void PlayMusic(string filename, bool looping = true) {
@@ -24,6 +26,18 @@ namespace ProjectMorpheus
             song.Loop = true;
             song.Volume = musicVolume;
             song.Play();
+        }
+
+        public static void ResumeMusic() {
+            song.Play();
+        }
+
+        public static void PauseMusic() {
+            song.Pause();
+        }
+
+        public static void StopMusic() {
+            song.Stop();
         }
 
         public static void SetMusicVolume(int volume) {
@@ -42,6 +56,12 @@ namespace ProjectMorpheus
             }
             sounds[soundsIndex] = s;
             soundsIndex = (soundsIndex + 1) % maxSounds;
+        }
+
+        public static void SetSoundVolume(int volume) {
+            if (volume < 0) volume = 0;
+            if (volume > 100) volume = 100;
+            soundVolume = volume;
         }
     }
 }
