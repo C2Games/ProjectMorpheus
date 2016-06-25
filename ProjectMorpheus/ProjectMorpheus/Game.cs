@@ -40,6 +40,7 @@ namespace ProjectMorpheus
             window.MouseButtonReleased += InputManager.OnMouseReleased;
             window.MouseMoved += InputManager.OnMouseMoved;
 
+            window.Resized += OnResized;
             window.Closed += OnClosed;
         }
 
@@ -119,6 +120,10 @@ namespace ProjectMorpheus
 
                 Draw();
             }
+        }
+
+        private static void OnResized(object sender, SizeEventArgs e) {
+            (sender as RenderWindow).SetView(new View(new FloatRect(0, 0, e.Width, e.Height)));
         }
 
         private static void OnClosed(object sender, EventArgs e) {
