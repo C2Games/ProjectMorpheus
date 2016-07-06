@@ -29,7 +29,9 @@ namespace ProjectMorpheus
         }
 
         public static void ResumeMusic() {
-            song.Play();
+            if (song.Status != SoundStatus.Playing) {
+                song.Play();
+            }
         }
 
         public static void PauseMusic() {
