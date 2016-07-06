@@ -33,7 +33,7 @@ namespace ProjectMorpheus
 
         public void Update() {
             if (InputManager.KeyAvailable()) {
-                KeyboardCommand kc = InputManager.GetKeyCommand();
+                // KeyboardCommand kc = InputManager.GetKeyCommands();
                 /* switch (kc.Key)
                  {
                      case Keyboard.Key.A:

@@ -45,8 +45,11 @@ namespace ProjectMorpheus
             return keyboardQueue.Peek();
         }
 
-        public static KeyboardCommand GetKeyCommand() {
-            return keyboardQueue.Dequeue();
+        public static IEnumerable<KeyboardCommand> GetKeyCommands() {
+            int size = keyboardQueue.Count;
+            for (int i = 0; i < size; ++i) {
+                yield return keyboardQueue.Dequeue();
+            }
         }
 
         public static bool MouseAvailable() {
@@ -57,8 +60,11 @@ namespace ProjectMorpheus
             return mouseQueue.Peek();
         }
 
-        public static MouseCommand GetMouseCommand() {
-            return mouseQueue.Dequeue();
+        public static IEnumerable<MouseCommand> GetMouseCommands() {
+            int size = mouseQueue.Count;
+            for (int i = 0; i < size; ++i) {
+                yield return mouseQueue.Dequeue();
+            }
         }
 
         public static Vector2i GetMouseLocation() {
