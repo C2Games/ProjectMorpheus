@@ -1,4 +1,6 @@
-﻿using ProjectMorpheus.Tiles;
+﻿using ProjectMorpheus.States;
+using ProjectMorpheus.Tiles;
+using ProjectMorpheus.Units;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
@@ -33,6 +35,7 @@ namespace ProjectMorpheus
             }
 
             window = new RenderWindow(new VideoMode(400, 400), "Test");
+            window.SetKeyRepeatEnabled(false);
 
             window.KeyPressed += InputManager.OnKeyPressed;
             window.KeyReleased += InputManager.OnKeyReleased;
@@ -42,6 +45,9 @@ namespace ProjectMorpheus
 
             window.Resized += OnResized;
             window.Closed += OnClosed;
+
+            StateManager.Load();
+            StateManager.AddState(new PlayerTurnState(Teams.Placeholder1));
         }
 
         private static HashSet<Keyboard.Key> debug = new HashSet<Keyboard.Key>();
@@ -52,51 +58,16 @@ namespace ProjectMorpheus
         private static bool debugDown = false;
 
         private static void Update() {
-            while (InputManager.KeyAvailable()) {
-                KeyboardCommand kc = InputManager.GetKeyCommand();
-                switch (kc.Key) {
-                    case Keyboard.Key.A:
-                        debugLeft = kc.Pressed;
-                        break;
-
-                    case Keyboard.Key.D:
-                        debugRight = kc.Pressed;
-                        break;
-
-                    case Keyboard.Key.W:
-                        debugUp = kc.Pressed;
-                        break;
-
-                    case Keyboard.Key.S:
-                        debugDown = kc.Pressed;
-                        break;
-                }
-            }
-
-            if (debugLeft) TileManager.MoveCameraRelative(-32 / 30f, 0);
-            if (debugRight) TileManager.MoveCameraRelative(32 / 30f, 0);
-            if (debugUp) TileManager.MoveCameraRelative(0, -32 / 30f);
-            if (debugDown) TileManager.MoveCameraRelative(0, 32 / 30f);
+            List<KeyboardCommand> keys = new List<KeyboardCommand>(InputManager.GetKeyCommands());
+            List<MouseCommand> mouse = new List<MouseCommand>(InputManager.GetMouseCommands());
+            StateManager.Update(keys, mouse);
         }
 
         private static void Draw() {
             window.Clear();
 
-            //Text info = new Text();
-            //info.Font = ContentManager.GetFont("testfont");
-            //info.Position = new Vector2f(0, 0);
-            //info.Color = Color.White;
-            //StringBuilder sb = new StringBuilder();
-            //sb.Append(string.Format("{0} : {1}\n", InputManager.GetMouseLocation().X, InputManager.GetMouseLocation().Y));
-            //foreach (Keyboard.Key k in debug) {
-            //    sb.Append(k.ToString());
-            //}
-            //info.DisplayedString = sb.ToString();
-            //window.Draw(info);
-
             TileManager.Draw(window);
-            ActionMenu debugAM = new ActionMenu(new Units.UnitAction[] { Units.UnitAction.Fire, Units.UnitAction.Wait }, 0, new Vector2f(10, 10));
-            debugAM.Draw(window);
+            StateManager.Draw(window);
             window.Display();
         }
 

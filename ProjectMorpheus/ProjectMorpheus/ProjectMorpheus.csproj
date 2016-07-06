@@ -81,7 +81,9 @@
     <Compile Include="MouseCommand.cs" />
     <Compile Include="SoundManager.cs" />
     <Compile Include="StateManager.cs" />
+    <Compile Include="States\PlayerTurnState.cs" />
     <Compile Include="States\State.cs" />
+    <Compile Include="States\UnitMoveState.cs" />
     <Compile Include="TileManager.cs" />
     <Compile Include="Tiles\AnimatedTile.cs" />
     <Compile Include="Tiles\FlatTile.cs" />

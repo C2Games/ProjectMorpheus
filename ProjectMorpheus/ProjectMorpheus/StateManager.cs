@@ -8,10 +8,8 @@ namespace ProjectMorpheus
     {
         private static Stack<State> states;
 
-        private static State currentState {
-            get {
-                return states.Peek();
-            }
+        public static State CurrentState() {
+            return states.Peek();
         }
 
         public static void Load() {
@@ -31,12 +29,12 @@ namespace ProjectMorpheus
             states.Push(state);
         }
 
-        public static void Update() {
-            currentState.Update();
+        public static void Update(List<KeyboardCommand> keyCommands, List<MouseCommand> mouseCommands) {
+            CurrentState().Update(keyCommands, mouseCommands);
         }
 
         public static void Draw(RenderWindow window) {
-            currentState.Draw(window);
+            CurrentState().Draw(window);
         }
     }
 }

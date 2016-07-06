@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectMorpheus.Units;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,8 @@ namespace ProjectMorpheus
 {
     internal static class UnitManager
     {
-
+        public static Unit Click(int x, int y) {
+            return null;
+        }
     }
 }

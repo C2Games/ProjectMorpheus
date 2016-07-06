@@ -34,6 +34,10 @@ namespace ProjectMorpheus
             return map[x][y];
         }
 
+        public static Tile Click(int x, int y) {
+            return null;
+        }
+
         public static void MoveCameraRelative(float dx, float dy) {
             //TODO: clamp
             camera.X += dx;
