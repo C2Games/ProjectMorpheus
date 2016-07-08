@@ -45,19 +45,19 @@ namespace ProjectMorpheus.States
                     Unit selected = UnitManager.Click(m.Location.X, m.Location.Y);
                     if (selected != null) {
                         StateManager.AddState(new UnitMoveState(selected));
-                        continue;
+                        return;
                     }
 
                     //do buildings
                 }
             }
 
-            TileManager.MoveCameraRelative(cameraDx, cameraDy);
-
+            TileManager.MoveCameraRelative(cameraDx, cameraDy);            
         }
 
         public override void Draw(RenderWindow window) {
-
+            TileManager.Draw(window);
+            UnitManager.Draw(window);
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using ProjectMorpheus.Tiles;
+using SFML.Graphics;
+using SFML.System;
 
 namespace ProjectMorpheus.Units
 {
@@ -8,7 +10,7 @@ namespace ProjectMorpheus.Units
         protected bool hasMoved;
         protected Teams team;
         protected Teams[] allies;
-
+        protected abstract Sprite unitSprite();
         public abstract UnitType GetUnitType();
 
         public abstract int GetAttackPower(Unit defender);
@@ -43,5 +45,9 @@ namespace ProjectMorpheus.Units
         public abstract UnitAction[] GetActionsIdle();
 
         public abstract UnitAction[] GetActionsMoved();
+        public virtual void Draw(Vector2f tilePos, RenderWindow window) {
+            unitSprite().Position = tilePos;
+            window.Draw(unitSprite());
+        }
     }
 }

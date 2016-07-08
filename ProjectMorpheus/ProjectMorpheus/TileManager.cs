@@ -10,7 +10,8 @@ namespace ProjectMorpheus
     {
         private static Tile[][] map;
         private static Vector2i mapSize;
-        private static Vector2f camera;
+
+        public static Vector2f Camera { get; private set; }
 
         public static void ClearMap(int width, int height) {
             map = new Tile[width][];
@@ -22,8 +23,7 @@ namespace ProjectMorpheus
             mapSize.Y = height;
 
             //TODO: not hardcode tilesize
-            camera.X = 32 * width / 2.0f;
-            camera.Y = 32 * height / 2.0f;
+            Camera = new Vector2f(32 * width / 2, 32 * height / 2);
         }
 
         public static void SetTile(int x, int y, Tile tile) {
@@ -40,13 +40,11 @@ namespace ProjectMorpheus
 
         public static void MoveCameraRelative(float dx, float dy) {
             //TODO: clamp
-            camera.X += dx;
-            camera.Y += dy;
+            Camera = new Vector2f(Camera.X + dx, Camera.Y + dy);
         }
 
         public static void MoveCameraAbsolute(float x, float y) {
-            camera.X = x;
-            camera.Y = y;
+            Camera = new Vector2f(x, y);
         }
 
         public static void Draw(RenderWindow window) {
@@ -55,18 +53,18 @@ namespace ProjectMorpheus
             int tilingWidth = (int)windowSize.X / tileSize;
             int tilingHeight = (int)windowSize.Y / tileSize;
 
-            int leftIndex = (int)Math.Floor(camera.X / tileSize);
+            int leftIndex = (int)Math.Floor(Camera.X / tileSize);
             if (leftIndex < 0) leftIndex = 0;
             int rightIndex = leftIndex + tilingWidth + 1;
             if (rightIndex >= mapSize.X) rightIndex = mapSize.X - 1;
-            int topIndex = (int)Math.Floor(camera.Y / tileSize);
+            int topIndex = (int)Math.Floor(Camera.Y / tileSize);
             if (topIndex < 0) topIndex = 0;
             int bottomIndex = topIndex + tilingHeight + 1;
             if (bottomIndex >= mapSize.Y) bottomIndex = mapSize.Y - 1;
 
             for (int x = leftIndex; x <= rightIndex; ++x) {
                 for (int y = topIndex; y <= bottomIndex; ++y) {
-                    Vector2f tilePos = new Vector2f(x * tileSize - camera.X, y * tileSize - camera.Y);
+                    Vector2f tilePos = new Vector2f(x * tileSize - Camera.X, y * tileSize - Camera.Y);
                     map[x][y].Draw(tilePos, window);
                 }
             }

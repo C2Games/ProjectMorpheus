@@ -10,8 +10,9 @@ namespace ProjectMorpheus.States
 {
     internal class UnitMoveState : State
     {
+        private Unit selectedUnit;
         public UnitMoveState(Unit unit) {
-
+            selectedUnit = unit;
         }
 
         public override void Update(List<KeyboardCommand> keyCommands, List<MouseCommand> mouseCommands) {
